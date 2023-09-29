@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.conf.urls.static import static
+import EcommerceAnalyzer.settings as settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('product/',include("product.urls")),
-    path('user/',include("user.urls"))``
-]
+    path('',include("Account.urls")),
+    path('product/',include("Product.urls")),
+    path('category/',include("Category.urls")),
+] + static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
