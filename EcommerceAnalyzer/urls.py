@@ -24,4 +24,5 @@ urlpatterns = [
     path('',include("Account.urls")),
     path('product/',include("Product.urls")),
     path('category/',include("Category.urls")),
+    path('scrapper/',include("Scrapper.urls")),
 ] + static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

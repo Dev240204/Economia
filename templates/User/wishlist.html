@@ -72,11 +72,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for product in wishlist %}
                             <tr class="product-row">
                                 <td>
                                     <figure class="product-image-container">
-                                        <a href="product.html" class="product-image">
-                                            <img src="/static/assets/images/products/product-4.jpg" alt="product">
+                                        <a href="/product/{{ product.product_name}}/?q=shoes/" class="product-image">
+                                            <img src="{{ product.product_image_link }}" alt="product">
                                         </a>
 
                                         <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
@@ -84,15 +85,19 @@
                                 </td>
                                 <td>
                                     <h5 class="product-title">
-                                        <a href="product.html">Men Watch</a>
+                                        <a href="product.html">{{ product.product_name }}</a>
                                     </h5>
                                 </td>
-                                <td class="price-box">$17.90</td>
+                                <td class="price-box">{{ product.product_discounted_price }}</td>
                                 <td>
+                                    {% if product.product_is_available == True %}
                                     <span class="stock-status">In stock</span>
+                                    {% else %}
+                                    <span class="stock-status">Out of stock</span>
+                                    {% endif %}
                                 </td>
                                 <td class="action">
-                                    <a href="ajax/product-quick-view.html" class="btn btn-quickview mt-1 mt-md-0"
+                                    <a href="/product/quick-view/" class="btn btn-quickview mt-1 mt-md-0"
                                         title="Quick View">Quick
                                         View</a>
                                     <button class="btn btn-dark btn-add-cart product-type-simple btn-shop">
@@ -100,8 +105,9 @@
                                     </button>
                                 </td>
                             </tr>
+                            {% endfor %}
 
-                            <tr class="product-row">
+                            <!-- <tr class="product-row">
                                 <td>
                                     <figure class="product-image-container">
                                         <a href="product.html" class="product-image">
@@ -157,7 +163,7 @@
                                         SELECT OPTION
                                     </a>
                                 </td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div><!-- End .cart-table-container -->

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Account.apps.AccountConfig',
     'Product.apps.ProductConfig',
     'Category.apps.CategoryConfig',
+    'Scrapper.apps.ScrapperConfig',
 ]
 
 MIDDLEWARE = [

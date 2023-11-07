@@ -25,7 +25,7 @@ class Clothes(models.Model):
 class Mobile(models.Model):
     product = models.ForeignKey('Product.Product',on_delete=models.CASCADE,null=True,blank=True)
     color = models.CharField(max_length=200,null=True,blank=True)
-    size = models.IntegerField(null=True,blank=True)
+    ram = models.CharField(max_length=50,null=True,blank=True)
     brand = models.CharField(max_length=200,null=True,blank=True)
     is_available = models.BooleanField(default=True)
 
