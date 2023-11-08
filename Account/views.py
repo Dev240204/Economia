@@ -3,6 +3,8 @@ from django.shortcuts import render,redirect
 from Account.models import *
 from Product.models import *
 from django.contrib.auth import authenticate,login,logout
+from Product.models import *
+from Account.utils import *
 
 # Create your views here.
 def auth_login(request):
@@ -59,3 +61,15 @@ def home(request):
         'new_products':new_products,
     }
     return render(request,'Index/home.html',context=context)
+
+def plot(request):
+    brand_count_chart = count_plot()
+    brand_rating_chart = brand_rating()
+    brand_discount_chart = brand_discount()
+    context = {
+        'brand_count_chart':brand_count_chart,
+        'brand_rating_chart':brand_rating_chart,
+        'brand_discount_chart':brand_discount_chart,
+        'price_comparision':price_comparision(),
+    }
+    return render(request,"Graph/graph.html",context=context)

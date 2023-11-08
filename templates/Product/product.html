@@ -209,7 +209,8 @@
                                 </li>
 
                                 <li>
-                                    CATEGORY: <strong><a href="#" class="product-category">{{ product.product_category}}</a></strong>
+                                    CATEGORY: <strong><a href="#" class="product-category">{{
+                                            product.product_category}}</a></strong>
                                 </li>
 
                                 <!-- <li>
@@ -300,7 +301,7 @@
                                             <th>Color</th>
                                             <td>{{ product_detail_dict.color }}</td>
                                         </tr>
-        
+
                                         <tr>
                                             <th>Ram</th>
                                             <td>{{ product_detail_dict.ram }}</td>
@@ -393,7 +394,14 @@
                         <!-- Product Analysis -->
                         <div class="tab-pane fade" id="product-tags-content" role="tabpanel"
                             aria-labelledby="product-tab-tags">
-                            <h1>Graph</h1>
+                            <h2>Predicted Discounted Price</h2>
+                            {% if predicted_chart %}
+
+                            <img src="data:image/png;base64, {{ predicted_chart|safe }}" alt="">
+
+                            {% endif %}
+                            <h4>{{ predicted_price }}</h4>
+                            <!-- <h5>{{ product.product_original_price }}</h5> -->
                         </div>
                         <!-- End .tab-pane -->
 
@@ -528,10 +536,8 @@
                         <div class="product-default">
                             <figure>
                                 <a href="/product/{{ product.product_name }}/">
-                                    <img src="{{ product.product_image_link }}"  width="280" height="280"
-                                        alt="product">
-                                    <img src="{{ product.product_image_link }}" width="280" height="280"
-                                        alt="product">
+                                    <img src="{{ product.product_image_link }}" width="280" height="280" alt="product">
+                                    <img src="{{ product.product_image_link }}" width="280" height="280" alt="product">
                                 </a>
                                 <!-- <div class="label-group">
                                     <div class="product-label label-hot">HOT</div>
@@ -540,7 +546,8 @@
                             </figure>
                             <div class="product-details">
                                 <div class="category-list">
-                                    <a href="category/mobile/" class="product-category">{{ product.product_category }}</a>
+                                    <a href="category/mobile/" class="product-category">{{ product.product_category
+                                        }}</a>
                                 </div>
                                 <h3 class="product-title">
                                     <a href="/product/{{ product.product_name }}/">{{ product.product_name }}</a>
@@ -560,13 +567,13 @@
                                 </div>
                                 <!-- End .price-box -->
                                 <div class="product-action">
-                                    <a href="/product/wishlist/{{ product.product_name }}/" title="Wishlist" class="btn-icon-wish"><i
-                                            class="icon-heart"></i></a>
+                                    <a href="/product/wishlist/{{ product.product_name }}/" title="Wishlist"
+                                        class="btn-icon-wish"><i class="icon-heart"></i></a>
                                     <a href="/product/{{ product.product_name }}/" class="btn-icon btn-add-cart"><i
                                             class="fa fa-arrow-right"></i><span>SELECT
                                             OPTIONS</span></a>
-                                    <a href="/product/quick-view/{{ product.product_name }}/" class="btn-quickview" title="Quick View"><i
-                                            class="fas fa-external-link-alt"></i></a>
+                                    <a href="/product/quick-view/{{ product.product_name }}/" class="btn-quickview"
+                                        title="Quick View"><i class="fas fa-external-link-alt"></i></a>
                                 </div>
                             </div>
                             <!-- End .product-details -->

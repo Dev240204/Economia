@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from Product.models import *
 from Category.models import *
+from Account.utils import *
+import joblib
 
 # Create your views here.
 def product_list(request,pk):
@@ -19,13 +21,25 @@ def product_list(request,pk):
     }
     reviews = Review.objects.all()
     reviews = reviews.filter(product=product)
+
+    model = joblib.load('static/model.sav')
+    new_data = int(product.product_original_price.replace(',',''))
+    new_data = [[new_data]]
+
+    predicted_price = model.predict(new_data)
+    predicted_price = int(predicted_price[0])
+
+    predicted_chart = predicted_price_chart(predicted_price,product.product_discounted_price)
     context = {
         'product':product,
         'product_detail_dict':product_detail_dict,
         'reviews':reviews,
         'related_products':related_products,
+        'predicted_price':predicted_price,
+        'predicted_chart':predicted_chart,
     }
-    return render(request,'Product/product.html',context)
+
+    return render(request,'Product/product.html',context=context)
 
 def review(request,pk):
     if request.method == 'POST':
