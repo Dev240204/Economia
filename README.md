@@ -43,11 +43,14 @@ To get started with Ecomnia, follow the installation instructions below.
 ### Installation
 
 1. Clone the repository.
+   ```bash
    git clone https://github.com/your-username/ecomnia.git
    
 2. Install Dependencies.
+   ```bash
    cd ecomnia
    pip install -r requirements.txt
 
 3. Run the application.
+   ```bash
    python manage.py runserver
